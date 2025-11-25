@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Ubuntu:wght@300&family=Work+Sans&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Sawarabi Gothic", sans-serif;
+  --font-display: "Ubuntu", "sans-serif";
   --color-primary:"#131316", 
   --color-base_gray: "#56616B",
   --color-base_white: "#FFF;",
