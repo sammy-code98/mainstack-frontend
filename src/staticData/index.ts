@@ -1,4 +1,12 @@
 import type { ApexOptions } from "apexcharts";
+import type { IconType } from "react-icons";
+import {
+  FcBrokenLink,
+  FcImageFile,
+  FcPicture,
+  FcShop,
+  FcViewDetails,
+} from "react-icons/fc";
 
 export const options: ApexOptions = {
   colors: ["#FF5403"],
@@ -55,3 +63,20 @@ export const TransactionStatus = [
 ];
 
 export const btnText = ["Today", "Last 7 days", "This month", "Last 3 months"];
+
+interface AppCardItem {
+  icon: IconType;
+  title: string;
+  subTitle: string;
+}
+export const appCardData: AppCardItem[] = [
+  {
+    icon: FcBrokenLink,
+    title: "Link in Bio",
+    subTitle: "Manage your Link in Bio",
+  },
+  { icon: FcShop, title: "Store", subTitle: "Manage your Store activities" },
+  { icon: FcPicture, title: "Media Kit", subTitle: "Manage your Media Kit" },
+  { icon: FcViewDetails, title: "Invoicing", subTitle: "Manage your Invoices" },
+  { icon: FcImageFile, title: "Bookings", subTitle: "Manage your Bookings" },
+];
