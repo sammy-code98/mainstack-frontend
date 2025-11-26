@@ -12,7 +12,7 @@ import {
 } from "react-icons/md";
 import { useQuery } from '@tanstack/react-query'
 import { getUser } from "../../api/index.api";
-import ProfileCard from "./profileCard";
+import ProfileCard from "../Cards/profileCard";
 
 
 export default function Navigation() {

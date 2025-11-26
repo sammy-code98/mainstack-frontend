@@ -1,9 +1,13 @@
+import Balance from "./components/Balance";
+import Navigation from "./components/Navigation";
+
 function App() {
   return (
     <>
-      <div className="text-3xl text-primary text-center">
-        Hello Mainstack
-      </div>
+      <Navigation />
+      <section className="relative mx-auto max-w-7xl mt-12">
+        <Balance />
+      </section>
     </>
   );
 }
