@@ -12,9 +12,7 @@ import {
   MdOutlinePeopleAlt,
   MdOutlineApps
 } from "react-icons/md";
-import { useQuery } from '@tanstack/react-query'
-import { getUser } from "../../api/index.api";
-
+import { useUserInitials } from "../../hooks/useUserInitials";
 
 
 const profileItems = [
@@ -35,9 +33,8 @@ const onMobile = [
 ]
 
 export default function ProfileCard() {
-  const { data } = useQuery({ queryKey: ['user'], queryFn: getUser })
-  const firstLetter = data?.first_name.charAt(0)
-  const secondLetter = data?.last_name.charAt(0)
+  const { firstLetter, secondLetter, user } = useUserInitials();
+
   return (
     <div className='bg-base-white rounded-3xl shadow-md px-4 py-6 mt-24  lg:w-1/4 absolute -top-4 lg:top-0'>
       <div className='flex  gap-4'>
@@ -47,8 +44,8 @@ export default function ProfileCard() {
           </div>
         </div>
         <div>
-          <h4 className='text-primary font-semibold lg:text-lg'>{data?.first_name}  {data?.last_name}</h4>
-          <p className='text-base_gray text-base'>{data?.email}</p>
+          <h4 className='text-primary font-semibold lg:text-lg'>{user?.first_name}  {user?.last_name}</h4>
+          <p className='text-base_gray text-base'>{user?.email}</p>
         </div>
       </div>
       <div className='lg:mt-6'>

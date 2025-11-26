@@ -10,15 +10,12 @@ import {
   MdOutlineChat,
   MdMenu
 } from "react-icons/md";
-import { useQuery } from '@tanstack/react-query'
-import { getUser } from "../../api/index.api";
 import ProfileCard from "../Cards/profileCard";
+import { useUserInitials } from "../../hooks/useUserInitials";
 
 
 export default function Navigation() {
-  const { isLoading, data } = useQuery({ queryKey: ['user'], queryFn: getUser })
-  const firstLetter = data?.first_name.charAt(0)
-  const secondLetter = data?.last_name.charAt(0)
+  const { firstLetter, secondLetter, isLoading } = useUserInitials();
   const [openModal, setOpenModal] = useState<boolean>(false)
 
   const handleOpenModal = () => {

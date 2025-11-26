@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { MdKeyboardArrowDown, MdOutlineFileDownload } from "react-icons/md";
 import { useQuery } from '@tanstack/react-query'
-import { getTransactions } from "../../api/index.api";
 import TransactionCard from "../Cards/transactionCard";
 import TransactionSkeleton from "./transactionSkeleton";
 import FilterDrawer from "./filterDrawer";
+import { QueryKeys } from "../../constants/queryKeys";
+import { getTransactions } from "../../api/index.api";
 
 export default function Transactions() {
-  const { isLoading, data } = useQuery({ queryKey: ['transactions'], queryFn: getTransactions })
+  const { isLoading, data } = useQuery({ queryKey: [QueryKeys.transactions], queryFn: getTransactions })
 
   const [openFilterDrawer, setOpenFilterDrawer] = useState<boolean>(false)
 
