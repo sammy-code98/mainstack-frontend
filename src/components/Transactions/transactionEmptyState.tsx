@@ -1,6 +1,11 @@
 import Reciept from "../../assets/receipt_long.svg";
+interface TransactionEmptyStateProps {
+  onClearFilter: () => void;
+}
 
-export default function TransactionEmptyState() {
+export default function TransactionEmptyState({
+  onClearFilter,
+}: TransactionEmptyStateProps) {
   return (
     <div className="py-4 flex justify-center items-center">
       <div className="space-y-4">
@@ -18,7 +23,10 @@ export default function TransactionEmptyState() {
         </div>
 
         <div>
-          <button className="py-2 px-6 bg-mainstack-secondary text-mainstack-primary font-semibold rounded-full text-sm cursor-pointer hover:shadow">
+          <button
+            onClick={onClearFilter}
+            className="py-2 px-6 bg-mainstack-secondary text-mainstack-primary font-semibold rounded-full text-sm cursor-pointer hover:shadow"
+          >
             Clear Filter
           </button>
         </div>

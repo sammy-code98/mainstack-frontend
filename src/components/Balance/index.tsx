@@ -13,7 +13,7 @@ export default function Balance() {
   });
   const { data: transdata, isLoading: loading } = useQuery({
     queryKey: [QueryKeys.transactionsGraph],
-    queryFn: getTransactions,
+    queryFn: () => getTransactions(),
   });
 
   const chartData = transdata?.flatMap(

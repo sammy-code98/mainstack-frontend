@@ -1,23 +1,33 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { MdKeyboardArrowDown, MdOutlineFileDownload } from "react-icons/md";
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import TransactionCard from "../Cards/transactionCard";
 import TransactionSkeleton from "./transactionSkeleton";
 import FilterDrawer from "./filterDrawer";
 import { QueryKeys } from "../../constants/queryKeys";
 import { getTransactions } from "../../api/index.api";
-// import TransactionEmptyState from "./transactionEmptyState";
+import type { FilterSchema } from "../../schema/transaction.schema";
+import TransactionEmptyState from "./transactionEmptyState";
 
 export default function Transactions() {
-  const { isLoading, data } = useQuery({
-    queryKey: [QueryKeys.transactions],
-    queryFn: getTransactions,
+  const [filters, setFilters] = useState<FilterSchema | any>(undefined);
+  const [openFilterDrawer, setOpenFilterDrawer] = useState<boolean>(false);
+
+  const { data, isLoading } = useQuery({
+    queryKey: [QueryKeys.transactions, filters],
+    queryFn: () => getTransactions(filters),
+    placeholderData: keepPreviousData,
   });
 
-  const [openFilterDrawer, setOpenFilterDrawer] = useState<boolean>(false);
+  const results = data ?? [];
 
   const handleOpenFilterDrawer = () => {
     setOpenFilterDrawer(!openFilterDrawer);
+  };
+
+  const handleClearFilter = () => {
+    setFilters(undefined);
   };
 
   return (
@@ -25,11 +35,9 @@ export default function Transactions() {
       <div className="flex justify-between items-center flex-wrap">
         <div className="pl-4">
           <h4 className="text-mainstack-primary text-lg lg:text-xl font-bold">
-            {data?.length} Transactions
+            {results?.length} Transactions
           </h4>
-          <p className="text-mainstack-gray">
-            Your transactions for the last {data?.length} days
-          </p>
+          <p className="text-mainstack-gray">Your transactions for all time</p>
         </div>
         <div className="flex px-4  gap-12 lg:gap-8 mt-2">
           <button
@@ -47,44 +55,41 @@ export default function Transactions() {
       <div className="py-4">
         {isLoading ? (
           <TransactionSkeleton />
+        ) : results.length === 0 ? (
+          <TransactionEmptyState onClearFilter={handleClearFilter} /> // CHANGED: show empty state when no results
         ) : (
           <>
-            {data?.map(
-              (
-                transact: {
-                  metadata: { product_name: string; name: string };
-                  amount: string;
-                  date: string;
-                  status: string;
-                  type: string;
-                },
-                index: null | undefined,
-              ) => {
-                return (
-                  <TransactionCard
-                    key={index}
-                    product_name={transact.metadata?.product_name}
-                    name={transact.metadata?.name}
-                    amount={transact.amount}
-                    date={transact.date}
-                    status={transact.status}
-                    type={transact.type}
-                  />
-                );
-              },
-            )}
+            {results.map((transact: any, idx: any) => {
+              return (
+                <TransactionCard
+                  key={idx}
+                  product_name={transact.metadata?.product_name}
+                  name={transact.metadata?.name}
+                  amount={transact.amount}
+                  date={transact.date}
+                  status={transact.status}
+                  type={transact.type}
+                />
+              );
+            })}
           </>
         )}
       </div>
-
-      {/* <div>
-        <TransactionEmptyState />
-      </div> */}
       <div>
         {openFilterDrawer ? (
           <FilterDrawer
             clickHandler={() => handleOpenFilterDrawer()}
             isOpen={openFilterDrawer}
+            onApply={(vals) => {
+              const payload: FilterSchema = {};
+              if ((vals as any).dateFrom)
+                payload.dateFrom = (vals as any).dateFrom;
+              if ((vals as any).dateTo) payload.dateTo = (vals as any).dateTo;
+              if ((vals as any).type?.length) payload.type = (vals as any).type;
+              if ((vals as any).status?.length)
+                payload.status = (vals as any).status;
+              setFilters(Object.keys(payload).length ? payload : undefined);
+            }}
           />
         ) : null}
       </div>

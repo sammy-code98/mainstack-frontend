@@ -48,18 +48,18 @@ export const options: ApexOptions = {
 };
 
 export const TransactionType = [
-  { value: "store", label: "Store Transactions" },
-  { value: "tipped", label: "Get Tipped " },
-  { value: "withdraw", label: "Withdrawals" },
-  { value: "charges", label: "Chargebacks" },
-  { value: "cash", label: "Cashbacks" },
-  { value: "referral", label: "Refer & Earn" },
+  { value: "Store Transactions", label: "Store Transactions" },
+  { value: "Get Tipped", label: "Get Tipped" },
+  { value: "Withdrawals", label: "Withdrawals" },
+  { value: "Chargebacks", label: "Chargebacks" },
+  { value: "Cashbacks", label: "Cashbacks" },
+  { value: "Refer & Earn", label: "Refer & Earn" },
 ];
 
 export const TransactionStatus = [
-  { value: "sucess", label: "Successful" },
-  { value: "pending", label: "Pending" },
-  { value: "fail", label: "Failed" },
+  { value: "Successful", label: "Successful" },
+  { value: "Pending", label: "Pending" },
+  { value: "Failed", label: "Failed" },
 ];
 
 export const btnText = ["Today", "Last 7 days", "This month", "Last 3 months"];
