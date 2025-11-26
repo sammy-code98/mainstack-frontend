@@ -16,7 +16,7 @@ api.interceptors.request.use(
   },
   function (error) {
     return Promise.reject(error);
-  }
+  },
 );
 
 api.interceptors.response.use(
@@ -28,6 +28,6 @@ api.interceptors.response.use(
       alert("error occured");
     }
     return Promise.reject(error);
-  }
+  },
 );
 export default api;
