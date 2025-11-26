@@ -1,14 +1,12 @@
 import ReactApexChart from "react-apexcharts";
-import { ApexOptions } from "apexcharts";
-import { options } from "../../utils/data";
+import type { ApexOptions } from "apexcharts";
 import { useQuery } from '@tanstack/react-query'
 import { getWallet, getTransactions } from "../../api/index.api";
 import BalanceCard from "../Cards/balanceCard";
+import { options } from "../../staticData";
 
 
 export default function Balance() {
-
-
   const { isLoading, data } = useQuery({ queryKey: ['wallet'], queryFn: getWallet })
   const { data: transdata, isLoading: loading } = useQuery({ queryKey: ['transactionsGraph'], queryFn: getTransactions })
 

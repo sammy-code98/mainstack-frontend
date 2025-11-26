@@ -1,4 +1,4 @@
-import Balance from "./components/Balance";
+// import Balance from "./components/Balance";
 import Navigation from "./components/Navigation";
 
 function App() {
@@ -6,7 +6,8 @@ function App() {
     <>
       <Navigation />
       <section className="relative mx-auto max-w-7xl mt-12">
-        <Balance />
+        kekekek
+        {/* <Balance /> */}
       </section>
     </>
   );

@@ -1,6 +1,6 @@
 import { MdInfoOutline } from "react-icons/md";
 
-type BalanceCardProps = {
+interface BalanceCardProps {
   title: string,
   amount: string,
 }
