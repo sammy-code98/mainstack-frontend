@@ -35,20 +35,20 @@ export default function Balance() {
       <div className="col-span-2 p-6">
         <div className="flex items-center gap-16 lg:gap-32">
           <div>
-            <p className="text-base-gray font-medium text-sm lg:text-base">
+            <p className="text-mainstack-gray font-medium text-sm lg:text-base">
               Available Balance
             </p>
-            <h3 className="text-primary text-2xl lg:text-4xl font-bold mt-2">
+            <h3 className="text-mainstack-primary text-2xl lg:text-4xl font-bold mt-2">
               USD {isLoading ? "0.00" : data?.balance}{" "}
             </h3>
           </div>
-          <button className="bg-primary px-6 lg:px-12 py-4 rounded-full text-base-white font-semibold hover:opacity-50">
+          <button className="bg-mainstack-primary px-6 lg:px-12 py-4 rounded-full text-mainstack-white font-semibold hover:opacity-50">
             Withdraw
           </button>
         </div>
         <div className="mt-8">
           {loading ? (
-            <p className="text-center mt-4 text-primary text-sm">
+            <p className="text-center mt-4 text-mainstack-primary text-sm">
               Loading Chart...
             </p>
           ) : (

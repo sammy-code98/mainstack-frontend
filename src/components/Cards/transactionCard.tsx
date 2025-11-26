@@ -21,7 +21,7 @@ export default function TransactionCard({
     <div className="flex justify-between items-center rounded-sm p-4 mb-4 cursor-pointer">
       <div className="flex justify-center items-center gap-6">
         <div
-          className={`rounded-full w-16 h-16 flex items-center justify-center ${type === "deposit" ? "bg-base-green text-primary-green" : "bg-primary-red text-base-red"} `}
+          className={`rounded-full w-16 h-16 flex items-center justify-center ${type === "deposit" ? "bg-mainstack-light-green text-mainstack-dark-green" : "bg-mainstack-light-red text-mainstack-dark-red"} `}
         >
           {type === "deposit" ? (
             <MdCallReceived size="1.5rem" />
@@ -30,7 +30,7 @@ export default function TransactionCard({
           )}
         </div>
         <div>
-          <p className="text-base-gray text-base font-semibold">
+          <p className="text-mainstack-gray text-base font-semibold">
             {type === "deposit" ? (
               <span>{product_name}</span>
             ) : (
@@ -39,10 +39,10 @@ export default function TransactionCard({
           </p>
           <p className="text-sm font-medium mt-2">
             {type === "deposit" ? (
-              <span className="text-base-gray">{name}</span>
+              <span className="text-mainstack-gray">{name}</span>
             ) : (
               <span
-                className={`${status === "successful" ? "text-secondary-green" : "text-base-yellow"}`}
+                className={`${status === "successful" ? "text-mainstack-secondary-green" : "text-mainstack-yellow"}`}
               >
                 {status}
               </span>
@@ -51,8 +51,8 @@ export default function TransactionCard({
         </div>
       </div>
       <div>
-        <p className="text-primary text-lg font-bold">USD {amount}</p>
-        <p className="text-base-gray text-sm">{date}</p>
+        <p className="text-mainstack-primary text-lg font-bold">USD {amount}</p>
+        <p className="text-mainstack-gray text-sm">{date}</p>
       </div>
     </div>
   );
