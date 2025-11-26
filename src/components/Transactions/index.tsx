@@ -6,6 +6,7 @@ import TransactionSkeleton from "./transactionSkeleton";
 import FilterDrawer from "./filterDrawer";
 import { QueryKeys } from "../../constants/queryKeys";
 import { getTransactions } from "../../api/index.api";
+// import TransactionEmptyState from "./transactionEmptyState";
 
 export default function Transactions() {
   const { isLoading, data } = useQuery({
@@ -27,7 +28,7 @@ export default function Transactions() {
             {data?.length} Transactions
           </h4>
           <p className="text-mainstack-gray">
-            Your transactions for the last 7 days
+            Your transactions for the last {data?.length} days
           </p>
         </div>
         <div className="flex px-4  gap-12 lg:gap-8 mt-2">
@@ -43,7 +44,7 @@ export default function Transactions() {
         </div>
       </div>
       <hr className="mt-6 text-mainstack-secondary" />
-      <div className="mt-8">
+      <div className="py-4">
         {isLoading ? (
           <TransactionSkeleton />
         ) : (
@@ -75,6 +76,10 @@ export default function Transactions() {
           </>
         )}
       </div>
+
+      {/* <div>
+        <TransactionEmptyState />
+      </div> */}
       <div>
         {openFilterDrawer ? (
           <FilterDrawer

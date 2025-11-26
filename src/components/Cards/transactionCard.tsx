@@ -18,15 +18,15 @@ export default function TransactionCard({
   type,
 }: TransactionCardProps) {
   return (
-    <div className="flex justify-between items-center rounded-sm p-4 mb-4 cursor-pointer">
+    <div className="flex justify-between items-center rounded-sm p-4 mb-2 cursor-pointer">
       <div className="flex justify-center items-center gap-6">
         <div
-          className={`rounded-full w-16 h-16 flex items-center justify-center ${type === "deposit" ? "bg-mainstack-light-green text-mainstack-dark-green" : "bg-mainstack-light-red text-mainstack-dark-red"} `}
+          className={`rounded-full w-12 h-12 flex items-center justify-center ${type === "deposit" ? "bg-mainstack-light-green text-mainstack-dark-green" : "bg-mainstack-light-red text-mainstack-dark-red"} `}
         >
           {type === "deposit" ? (
-            <MdCallReceived size="1.5rem" />
+            <MdCallReceived size="1.2rem" />
           ) : (
-            <MdOutlineArrowOutward size="1.5rem" />
+            <MdOutlineArrowOutward size="1.2rem" />
           )}
         </div>
         <div>
@@ -37,7 +37,7 @@ export default function TransactionCard({
               "Cash withdrawal"
             )}{" "}
           </p>
-          <p className="text-sm font-medium mt-2">
+          <p className="text-sm font-medium space-y-1">
             {type === "deposit" ? (
               <span className="text-mainstack-gray">{name}</span>
             ) : (
