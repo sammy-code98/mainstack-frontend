@@ -3,13 +3,19 @@
 
 @theme {
   --font-display: "Ubuntu", "sans-serif";
-  --color-primary: #131316;
-  --color-base-gray: #56616B;
-  --color-base-white: #FFF;
-  --color-secondary: #EFF1F6;
-  --color-base-green: #E3FCF2;
-  --color-primary-green: #075132;
-  --color-primary-red: #F9E3E0;
-  --color-base-red: #961100;
-  --color-base-yellow: #A77A07;
+  --color-mainstack-primary: #131316;
+  --color-mainstack-gray: #56616B;
+  --color-mainstack-white: #FFF;
+  --color-mainstack-secondary: #EFF1F6;
+  --color-mainstack-light-green: #E3FCF2;
+  --color-mainstack-dark-green: #075132;
+  --color-mainstack-light-red: #F9E3E0;
+  --color-mainstack-dark-red: #961100;
+  --color-mainstack-yellow: #A77A07;
+  --shadow-md: 0px 2px 4px 0px rgba(45, 59, 67, 0.05), 0px 2px 6px 0px rgba(45, 59, 67, 0.06);
 }
+
+@utility container{
+  margin-inline:auto;
+}
+

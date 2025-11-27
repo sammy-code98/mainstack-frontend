@@ -1,75 +1,62 @@
-# React + TypeScript + Vite
+# MainStack Frontend Engineer Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a  simple dashboard app designed for mainstack frontend engineer interview task.
 
-Currently, two official plugins are available:
+## Tech Stack
+- Reactjs
+- Typescript
+- Axios
+- React Query
+- Vite
+- Tailwind CSS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+### Figma UI
+ Find the original ui for this task on the [Mainstack figma board](https://www.figma.com/design/dHd7ryO9dHNqxkl2fQavrh/Front-End-Test?node-id=1-1532&t=v6mldwHCQNCXuNor-0)
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### API Endpoint Url
+Checkout the API endpoint Url [Here](https://fe-task-api.mainstack.io)
 
-Note: This will impact Vite dev & build performances.
+### Demo Url
+Checkout my implementation via this [Link](https://samuel-uzor-mainstack-frontend.vercel.app/)
 
-## Expanding the ESLint configuration
+## Features
+- Pixel Perfect Responsive design for various screen sizes
+- Filter Funtionality
+- Export Transactions as Excel file
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Run Locally
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Clone the repo
+```bash
+git clone <repo url>
+```
+Cd into project directory
+```bash
+cd <project directory>
+```
+Install dependencies
+```bash
+yarn install
+```
+Start local server
+```bash
+yarn dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Improvements and Next Steps
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Add Testing:** Improve coverage for edge cases and asynchronous flows
+- **Robust Transaction Filter Funtionality:** The current  endpoint for fetching  returns `undefined` when query params is passed to it, to get it functioning properly the backend needs to adjust the endpoint to accept query params and return the right data
+- **Improved Schema Validation for Filter Drawer**
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+
+## Author
+
+Uzor Samuel
+
+Frontend Engineer
+
+[LinkedIn](https://www.linkedin.com/in/samuel-uzor98/) || [Github](https://github.com/sammy-code98)
+
