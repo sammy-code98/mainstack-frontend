@@ -10,7 +10,7 @@ import { getTransactions } from "../../api/index.api";
 import type { FilterSchema } from "../../schema/transaction.schema";
 import TransactionEmptyState from "./transactionEmptyState";
 import { exportToExcel } from "../../constants/exportXlsx";
-import toast from "react-hot-toast"; 
+import toast from "react-hot-toast";
 
 export default function Transactions() {
   const [filters, setFilters] = useState<FilterSchema | any>(undefined);
@@ -33,7 +33,6 @@ export default function Transactions() {
     toast("Filters cleared", { icon: "✨" });
   };
 
-
   const exportFormattedData = results.map((item: any) => ({
     productName: item?.metadata?.product_name ?? "",
     customerName: item?.metadata?.name ?? "",
@@ -46,12 +45,11 @@ export default function Transactions() {
   const handleExport = () => {
     if (!results.length) {
       toast.error("No data available to export");
-      return
+      return;
     }
     exportToExcel(exportFormattedData, "transactions");
     toast.success("Transactions exported successfully");
   };
-
 
   return (
     <div className="mt-12">
@@ -71,7 +69,8 @@ export default function Transactions() {
           </button>
           <button
             onClick={handleExport}
-            className="flex justify-center items-center gap-2 text-base font-semibold bg-mainstack-secondary text-mainstack-primary rounded-full px-8 py-2 cursor-pointer">
+            className="flex justify-center items-center gap-2 text-base font-semibold bg-mainstack-secondary text-mainstack-primary rounded-full px-8 py-2 cursor-pointer"
+          >
             Export list <MdOutlineFileDownload />{" "}
           </button>
         </div>
@@ -81,7 +80,7 @@ export default function Transactions() {
         {isLoading ? (
           <TransactionSkeleton />
         ) : results.length === 0 ? (
-            <TransactionEmptyState onClearFilter={handleClearFilter} /> 
+          <TransactionEmptyState onClearFilter={handleClearFilter} />
         ) : (
           <>
             {results.map((transact: any, idx: any) => {
