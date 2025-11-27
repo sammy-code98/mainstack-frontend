@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
+import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Select from "react-select";
@@ -23,6 +23,8 @@ export default function FilterDrawer({
   isOpen,
   onApply,
 }: FilterDrawerProps) {
+  const [activeBtn, setActiveBtn] = useState<string | null>(null);
+
   const {
     control,
     handleSubmit,
@@ -51,6 +53,7 @@ export default function FilterDrawer({
   };
 
   const handleClear = () => {
+    setActiveBtn(null);
     reset();
     onApply({} as FilterSchema);
     clickHandler();
@@ -59,7 +62,7 @@ export default function FilterDrawer({
   return (
     <div
       className={`fixed space-y-8 top-0 right-0 z-50 h-screen px-4 lg:px-8 py-4 w-full lg:w-4/12 mt-2 bg-mainstack-white rounded-3xl  transition duration-700 ease-in-out transform
-    ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+    ${isOpen ? "translate-x-0 " : "translate-x-full"}`}
       style={{ boxShadow: `${isOpen ? "0 0 0 100000px rgba(0,0,0,.2)" : ""}` }}
     >
       <form onSubmit={handleSubmit(submitHandler)} className="space-y-8">
@@ -74,13 +77,48 @@ export default function FilterDrawer({
           </div>
         </div>
         <div className="flex justify-between items-center flex-wrap gap-2">
-          {btnText.map((text, index) => {
+          {btnText.map((text) => {
+            const isActive = activeBtn === text;
             return (
-              <div key={index}>
-                <button className="py-3 px-2.5 lg:py-2 lg:px-6  text-mainstack-primary font-semibold rounded-full border border-mainstack-secondary bg-mainstack-white focus:outline-none">
-                  {text}
-                </button>
-              </div>
+              <button
+                key={text}
+                type="button"
+                onClick={() => {
+                  setActiveBtn(text);
+                  // set derived date range
+                  const today = new Date();
+                  let from: Date | undefined;
+
+                  switch (text) {
+                    case "Today":
+                      from = today;
+                      break;
+                    case "Last 7 days":
+                      from = new Date(today);
+                      from.setDate(from.getDate() - 7);
+                      break;
+                    case "This month":
+                      from = new Date(today.getFullYear(), today.getMonth(), 1);
+                      break;
+                    case "Last 3 months":
+                      from = new Date(today);
+                      from.setMonth(from.getMonth() - 3);
+                      break;
+                  }
+                  // update form values
+                  reset({
+                    dateFrom: from,
+                    dateTo: today,
+                    type: undefined,
+                    status: undefined,
+                  });
+                }}
+                className={`py-3 px-3 lg:py-2 lg:px-6 rounded-full border text-sm font-semibold transition cursor-pointer
+        ${isActive ? "bg-black text-white" : "bg-mainstack-white text-mainstack-primary border-mainstack-secondary"}
+      `}
+              >
+                {text}
+              </button>
             );
           })}
         </div>
